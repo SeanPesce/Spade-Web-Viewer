@@ -2,7 +2,7 @@
 **Author: Sean Pesce**  
 
 <p align="center">
-<img align="center" title="Example clip from MJPEG stream" src="https://github.com/SeanPesce/Spade-Web-Viewer/blob/master/image/example.webp?raw=true" alt="Example clip from MJPEG stream">
+<img align="center" title="Example clip from MJPEG stream" src="https://github.com/SeanPesce/Spade-Web-Viewer/blob/master/image/example.webp?raw=true" alt="Example clip from MJPEG stream" width="320px">
 </p>  
 
 
