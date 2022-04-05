@@ -13,7 +13,7 @@ A utility for converting [Axel Glade Spade "smart" earwax cleaner](https://www.a
 
  * Power on the Spade device  
  * Connect to the Spade WiFi  
- * Start the stream mirror: `python3 spade_mirror.py`  
+ * Start the stream mirror: `python3 spade_mirror.py --no-ssl`  
 
 With the stream mirror running, you can view the live video in a number of ways:  
 
