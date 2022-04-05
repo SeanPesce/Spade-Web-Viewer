@@ -4,6 +4,9 @@
 # The following project was used as a reference implementation for the HTTP-based MPJEG stream:
 # https://github.com/damiencorpataux/pymjpeg
 
+# Use the following shell command to create a self-signed TLS certificate and private key:
+#    openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out cert.crt -keyout private.key
+
 
 import datetime
 import http.server
@@ -479,9 +482,20 @@ class SpadeClient:
         
         
 if __name__ == '__main__':
+    no_ssl_flag = '--no-ssl'
+    if len(sys.argv) < 2 or (len(sys.argv) < 3 and no_ssl_flag not in sys.argv):
+        print(f'\nUsage:\n\t{sys.argv[0]} {no_ssl_flag}\n\t{sys.argv[0]} <PEM certificate file> <private key file>\n')
+        sys.exit()
+
+    cert_fpath = None
+    privkey_fpath = None
+    if no_ssl_flag not in sys.argv:
+        cert_fpath = sys.argv[1]
+        privkey_fpath = sys.argv[2]
+
     client = SpadeClient()
     print(f'Server battery at {client.battery}%')
     print(f'Server: {client.version}')
     print(f'PWM: {client.pwm}')
-    #client.stream_to_matplotlib()  # Not recommended; slows to unusable rate very quickly due to repeated rendering with matplotlib
-    client.mirror_http()
+    
+    client.mirror_http(cert_fpath, privkey_fpath)

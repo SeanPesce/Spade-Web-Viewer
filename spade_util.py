@@ -22,10 +22,12 @@ def ping(host, timeout=1):
     # Determine argument syntax (Linux vs Windows)
     count_flag = 'c'
     dev_null = '/dev/null'
+    quote_char = '\''
     if 'windows' in platform.system().lower():
         count_flag = 'n'
         dev_null = 'NUL'
-    cmd = f'ping -{count_flag} 1 -w {int(timeout)} \'{host}\' 2>&1 > {dev_null}'
+        quote_char = '"'
+    cmd = f'ping -{count_flag} 1 -w {int(timeout)} {quote_char}{host}{quote_char} 2>&1 > {dev_null}'
     retcode = os.system(cmd)
     return retcode == 0
 
