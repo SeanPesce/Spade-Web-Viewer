@@ -9,6 +9,9 @@
 ## Overview  
 A utility for converting [Axel Glade Spade "smart" earwax cleaner](https://www.axelglade.com/collections/e) video streams to MJPEG for general-purpose use.  
 
+**NOTE:** This tool has only been tested with the [Spade Mini](https://www.axelglade.com/collections/e/products/spade-mini), but it should work for any product that uses `libmlcamera-2.5.so` for video streaming in its client implementation.  
+
+
 ## Usage  
 
  * Power on the Spade device  
@@ -21,6 +24,23 @@ With the stream mirror running, you can view the live video in a number of ways:
  * In VLC (GUI); go to *Media*→*Open Network Stream...*, set the URL to `http://127.0.0.1:45100/stream`, and then click *Play*  
  * In VLC (command-line); run `vlc http://127.0.0.1:45100/stream`  
  * With ffmpeg; run `ffplay -i http://127.0.0.1:45100/stream`  
+
+
+## SSL/TLS    
+
+The video stream can also be transported over TLS for security. This document won't walk you through setting up your own [PKI](https://myhomelab.gr/linux/2019/12/13/local-ca-setup.html), but the following command will generate a key pair for encrypting traffic with TLS:  
+
+```
+openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out cert.crt -keyout private.key
+```
+
+To start the stream mirror over HTTPS, specify the TLS key pair in the shell command:  
+
+```
+python3 spade_mirror.py cert.crt private.key
+```
+
+The HTTPS stream will then be accessible at `https://127.0.0.1:45100/stream`.  
 
 
 ## Contact  
