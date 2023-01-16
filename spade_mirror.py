@@ -22,9 +22,6 @@ import spade_msg
 from spade_util import ping, udp_send, decode_battery_percentage
 
 
-SERVER_IP = '192.168.10.123'
-
-
 class HttpHandler(http.server.BaseHTTPRequestHandler):
     BOUNDARY = b'--SP-LaputanMachine--'
     SPADE_CLIENT = None
