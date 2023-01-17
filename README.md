@@ -9,7 +9,7 @@
 ## Overview  
 A utility for converting [Axel Glade Spade "smart" earwax cleaner](https://www.axelglade.com/collections/e) video streams to MJPEG for general-purpose use.  
 
-**NOTE:** This tool has only been tested with the [Spade Mini](https://www.axelglade.com/collections/e/products/spade-mini), but it should work for any product that uses `libmlcamera-2.5.so` for video streaming in its client implementation.  
+**NOTE:** This tool has only been tested with the [Spade Mini](https://www.axelglade.com/collections/e/products/spade-mini), but it should work for any product that uses `libmlcamera-2.5.so` or the Spade mobile app (`com.molink.john.spade` - [Google Play](https://play.google.com/store/apps/details?id=com.molink.john.spade)/[iOS](https://apps.apple.com/us/app/spade-by-axel-glade/id1535193019)) for video streaming in its client implementation.  
 
 
 ## Usage  
@@ -45,6 +45,10 @@ The HTTPS stream will then be accessible at `https://127.0.0.1:45100/stream`.
 
 ## Contact  
 If you find any bugs, please open a new [GitHub issue](https://github.com/SeanPesce/Spade-Web-Viewer/issues/new).  
+
+
+## Related Projects  
+ * **[Suear Web Viewer](https://github.com/SeanPesce/Suear-Web-Viewer)**, a similar project for [Suear](https://play.google.com/store/apps/details?id=com.i4season.bkCamera) "smart" earwax cleaners (sold under brand names such as [LEIPUT](https://www.amazon.com/Ear-Wax-Removal-Remover-Android%EF%BC%88Black%EF%BC%89/dp/B09KZ8TS7L)).  
 
 
 ## Acknowledgements  
