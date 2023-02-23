@@ -19,15 +19,20 @@ def ping(host, timeout=1):
     for c in host:
         if c not in safe_alphabet:
             raise ValueError(f'Invalid character in "host" argument: "{c}"')
-    # Determine argument syntax (Linux vs Windows)
+    host = socket.gethostbyname(host)
+    # Determine argument syntax (Linux vs. Windows vs. MacOS)
     count_flag = 'c'
     dev_null = '/dev/null'
     quote_char = '\''
+    wait_flag = 'w'
     if 'windows' in platform.system().lower():
         count_flag = 'n'
         dev_null = 'NUL'
         quote_char = '"'
-    cmd = f'ping -{count_flag} 1 -w {int(timeout)} {quote_char}{host}{quote_char} 2>&1 > {dev_null}'
+    if 'darwin' in platform.system().lower():
+        wait_flag = 'W'
+
+    cmd = f'ping -{count_flag} 1 -{wait_flag} {int(timeout)} {quote_char}{host}{quote_char} 2>&1 > {dev_null}'
     retcode = os.system(cmd)
     return retcode == 0
 
@@ -79,10 +84,3 @@ def decode_battery_percentage(val):
     if percent > 100:
         percent = 100
     return percent
-    
-    
-
-
-
-
-
